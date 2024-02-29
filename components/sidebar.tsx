@@ -40,7 +40,7 @@ const routes = [
         label: "Blogs",
         icon: FileText,
         href: "/blogs",
-        color: "text-violet-500",
+        color: "text-emerald-500",
     },
     {
         label: "Settings",
