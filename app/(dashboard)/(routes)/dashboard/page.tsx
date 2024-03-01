@@ -1,8 +1,72 @@
+"use client";
 
+import { ArrowRight, Dices, FileText, MessageSquare, Shield, Sword } from "lucide-react";
+
+import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+
+const tools = [
+    {
+        label: "League of Legends",
+        icon: Sword,
+        color: "text-blue-800",
+        bgColor: "bg-blue-800/10",
+        href: "/league-of-legends",
+    },
+    {
+        label: "Hearthstone",
+        icon: Dices,
+        color: "text-orange-500",
+        bgColor: "bg-orange-500/10",
+        href: "/hearthstone",
+    },
+    {
+        label: "Legends of Runeterra",
+        icon: Shield,
+        color: "text-green-600",
+        bgColor: "bg-green-600/10",
+        href: "/legends-of-runeterra",
+    },
+    {
+        label: "Blogs",
+        icon: FileText,
+        color: "text-emerald-500",
+        bgColor: "bg-emerald-500/10",
+        href: "/blogs",
+    },
+]
 const DashboardPage = () => {
+    const router = useRouter();
     return (
         <div>
-            <h1>Dashboard Page (Protected)</h1>
+            <div className="mb-8 space-y-4">
+                <h2 className="text-2xl md:text-4xl font-bold text-center">
+                    Your Gaming Strategy Partner
+                </h2>
+                <p className="text-muted-foreground font-light text-sm md:text-lg text-center">
+                    Connect with our AI-powered chatbot for personalized gaming tips, build suggestions and meta strategies
+                </p>
+            </div>
+            <div className="px-4 md:px-20 lg:px-32 space-y-4">
+                {tools.map((tool) => (
+                    <Card 
+                        onClick={() => router.push(tool.href)}
+                        key={tool.href}
+                        className="p-4 border-black/5 flex items-center justify-between hover:shadow-md transition cursor-pointer"
+                    >
+                        <div className="flex items-center gap-x-4">
+                            <div className={cn ("p-2 w-fit rounded-md", tool.color)}>
+                                <tool.icon className={cn("w-8 h-8", tool.color)} />
+                            </div>
+                            <div className="font-semibold">
+                                {tool.label}
+                            </div>
+                        </div>
+                        <ArrowRight className="w-5 h-5"/>
+                    </Card>
+                ))}
+            </div>
         </div>
     )
 }
